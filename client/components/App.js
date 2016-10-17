@@ -1,12 +1,29 @@
 class App extends React.Component {
   constructor (props) {
     super(props);
+    this.serverURL = 'http://127.0.0.1:8080/movies';
 
     this.state = {
     	moviesToRender: window.movieData
     }
   }
+  
+  componentDidMount () {
+    this.getAllMovies((movies) => {
+    	this.setState({
+    		moviesToRender: movies
+    	})
+    });
+  }
 
+
+  getAllMovies (cb) {
+    $.get(this.serverURL).done((movies) => {
+      cb(movies);
+    }).fail((err) => {
+    	throw err;
+    })
+  }
 
   submitHandler (e) {
   	e.preventDefault();
