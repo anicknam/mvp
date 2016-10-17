@@ -5,26 +5,20 @@ class App extends React.Component {
     this.state = {
     	moviesToRender: window.movieData
     }
-
   }
 
   render () {
   	return (
   	  <div>
         <div> 
-          {//<MovieList movies={}>
-          }
-          HELLO
-  
+          <MovieList movies={this.state.moviesToRender}/>
         </div>
-  
-  
   	  </div>
   	)
   }
 
-}
+};
 
 
 
-ReactDOM.render(<App />, document.getElementById("app"))
+ReactDOM.render(<App />, document.getElementById("app"));
