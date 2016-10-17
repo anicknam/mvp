@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
-app.use('/', handler.fetchMovies);
-app.post('/', handler.saveMovie);
+app.get('/movies', handler.fetchMovies);
+app.post('/movies', handler.saveMovie);
 
 
 

@@ -11,7 +11,7 @@ exports.fetchMovies = function(req, res) {
  //      }
 	// });
 
-	res.send('HELLO');
+	res.send('Inside get handler');
 };
 
 exports.saveMovie = function(req, res) {
@@ -27,7 +27,7 @@ exports.saveMovie = function(req, res) {
  //    	watched: watched
  //    });
     
-    res.send(newMovieEntry);
+   // res.send(newMovieEntry);
 
     // newMovieEntry.save(function(err, newMovieEntry){
     // 	if (err) {
@@ -40,6 +40,6 @@ exports.saveMovie = function(req, res) {
     // 	}
     // })
 
-  res.send('HELLO')
+  res.send('Inside post handler')
 
 };
