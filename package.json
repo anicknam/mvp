@@ -1,0 +1,24 @@
+{
+  "name": "movie-log",
+  "version": "1.0.0",
+  "description": "Log for watched and unwatched movies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anicknam/2016-09-mvp.git"
+  },
+  "author": "ANICKNAM",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/anicknam/2016-09-mvp/issues"
+  },
+  "homepage": "https://github.com/anicknam/2016-09-mvp#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "express-partials": "^0.3.0"
+  }
+}
