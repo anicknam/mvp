@@ -34,11 +34,29 @@ class App extends React.Component {
       genre: this.refs.genre.value
   	};
 
-    var currMoviesToRender = this.state.moviesToRender;
-    currMoviesToRender.splice(0,0,newMovieEntry);
-    this.setState({
-    	moviesToRender: currMoviesToRender
-    })
+  	$.ajax({
+  	         type: "POST",
+  	         url: this.serverURL,
+  	         data: JSON.stringify(newMovieEntry),
+  	         dataType: "json",
+  	         contentType: "application/json; charset=utf-8",
+  	         success: (data) => {
+  	         	this.getAllMovies((movies) => {
+  	         		this.setState({
+  	         			moviesToRender: movies
+  	         		})
+  	         	});
+  	         },
+  	         error: (error) => {
+  	         	throw error;
+  	         }
+  	});
+
+    // var currMoviesToRender = this.state.moviesToRender;
+    // currMoviesToRender.splice(0,0,newMovieEntry);
+    // this.setState({
+    // 	moviesToRender: currMoviesToRender
+    // })
   }
 
   render () {
