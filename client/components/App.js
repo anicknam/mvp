@@ -1,6 +1,7 @@
 import React from 'react';
 import MovieList from 'MovieList';
 import MovieListEntry from 'MovieListEntry';
+import SearchMovie from 'SearchMovie';
 
 class App extends React.Component {
   constructor (props) {
@@ -13,17 +14,15 @@ class App extends React.Component {
   }
   
   componentDidMount () {
-    this.getAllMovies((movies) => {
-    	this.setState({
-    		moviesToRender: movies
-    	})
-    });
+    this.getAllMovies();
   }
 
 
-  getAllMovies (cb) {
+  getAllMovies () {
     $.get(this.serverURL).done((movies) => {
-      cb(movies);
+      this.setState({
+      	moviesToRender: movies
+      })
     }).fail((err) => {
     	throw err;
     })
@@ -45,12 +44,9 @@ class App extends React.Component {
   	         dataType: "json",
   	         contentType: "application/json; charset=utf-8",
   	         success: (data) => {
-  	         	this.getAllMovies((movies) => {
-  	         		this.setState({
-  	         			moviesToRender: movies
-  	         		})
-  	         	});
-  	         },
+  	         	this.getAllMovies();
+  	         	}
+  	         ,
   	         error: (error) => {
   	         	throw error;
   	         }
@@ -61,11 +57,23 @@ class App extends React.Component {
 
   searchHandler (title) {
 
+    // var searchedMovieTitle = refs.search.value;
+    if (title){
+      var currMoviesToRender = this.state.moviesToRender;
+      currMoviesToRender.forEach((movie)=> {
+    	  if (movie.title.toLowerCase() === title.toLowerCase()) {
+    		  this.setState({
+    			  moviesToRender: [movie]
+    		  })
+    	  }
+      })	
+    } else {
+      this.getAllMovies();
+    }
+
   }
 
   render () {
-  	console.log(this.state.moviesToRender);
-
   	return (
   	  <div>
   	    <div> 
@@ -79,7 +87,10 @@ class App extends React.Component {
   	        <button>Add Movie</button>
   	      </form>
   	    </div>
-        
+
+        <div>
+          <SearchMovie searchHandler={this.searchHandler.bind(this)}/>
+        </div>
 
         <div> 
           <MovieList movies={this.state.moviesToRender}/>
@@ -90,6 +101,4 @@ class App extends React.Component {
 
 };
 
-//window.App = App
 export default App;
-// ReactDOM.render(<App />, document.getElementById("app"));

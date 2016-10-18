@@ -6,5 +6,4 @@ var MovieListEntry = (props) => (
 	</div>
 );
 
-//window.MovieListEntry = MovieListEntry;
 export default MovieListEntry;
