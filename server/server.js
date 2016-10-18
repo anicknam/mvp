@@ -9,15 +9,21 @@ var app = express();
 app.use(partials());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('../client'));
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+app.get('/api/movies', handler.fetchMovies);
+app.post('/api/movies', handler.saveMovie);
+app.get('*', function (request, response){
+  response.sendFile(path.resolve(__dirname, '../client', 'index.html'))
+})
 
 
-
-app.get('/movies', handler.fetchMovies);
-app.post('/movies', handler.saveMovie);
-
-
-
-
-app.set('port', 8080);
+app.set('port', 8000);
 console.log('MovieLog listening on port: ', app.get('port'))
 app.listen(app.get('port'));

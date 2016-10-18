@@ -1,10 +1,14 @@
+import React from 'react';
+import MovieList from 'MovieList';
+import MovieListEntry from 'MovieListEntry';
+
 class App extends React.Component {
   constructor (props) {
     super(props);
-    this.serverURL = 'http://127.0.0.1:8000/movies';
+    this.serverURL = 'http://127.0.0.1:8000/api/movies';
 
     this.state = {
-    	moviesToRender: window.movieData
+    	moviesToRender: []
     }
   }
   
@@ -60,6 +64,8 @@ class App extends React.Component {
   }
 
   render () {
+  	console.log(this.state.moviesToRender);
+
   	return (
   	  <div>
   	    <div> 
@@ -84,6 +90,6 @@ class App extends React.Component {
 
 };
 
-
-
-ReactDOM.render(<App />, document.getElementById("app"));
+//window.App = App
+export default App;
+// ReactDOM.render(<App />, document.getElementById("app"));

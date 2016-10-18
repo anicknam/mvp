@@ -1,3 +1,6 @@
+import React from 'react';
+import MovieListEntry from 'MovieListEntry';
+
 var MovieList = (props) => (
   <div className = "movie-list">
 	  {props.movies.map((movie) => {
@@ -6,4 +9,9 @@ var MovieList = (props) => (
   </div>
 );
 
-window.MovieList = MovieList;
+MovieList.propTypes = {
+  movies: React.PropTypes.array.isRequired
+};
+
+//window.MovieList = MovieList;
+export default MovieList;

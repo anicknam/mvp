@@ -31,9 +31,6 @@ exports.saveMovie = function(req, res) {
     	if (err) {
     		res.status(500).send(err);
     	} else {
-    		res.set({
-    			'access-control-allow-origin': '*'
-    		});
     		res.status(200).send(newMovieEntry);
     	}
     })
