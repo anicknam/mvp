@@ -39,8 +39,10 @@ class App extends React.Component {
   	$.ajax({
   	         type: "GET",
   	         url: this.serverURL + '?watched=' + watched.toString(),
-  	         success: (data) => {
-  	         	this.getAllMovies();
+  	         success: (movies) => {
+  	         	  this.setState({
+  	         		  moviesToRender: movies
+  	         	  })
   	         	}
   	         ,
   	         error: (error) => {
@@ -121,8 +123,11 @@ class App extends React.Component {
         </div>
 
         <div>
-          <button onClick={(e) => (this.getFilteredMovies(true))}>UnWatched</button>
+            <button className="watch-button" onClick={(e) => (this.getFilteredMovies(true))}>UnWatched</button>
+            <button className="watch-button" onClick={(e) => (this.getFilteredMovies(false))}>Watched</button>
         </div>
+
+ 
 
         <div> 
           <MovieList movies={this.state.moviesToRender}/>
