@@ -1,3 +1,7 @@
+html {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
 body {
 	background-image: url('../assets/movie-neg-opac.png');
 }
@@ -30,18 +34,21 @@ body {
 	padding-left: 10px;
 	padding-right: 5px;
 	padding-top: 10px;
+	font-weight: bold;
 }
 
 .movie-list-entry .movie-year {
 	padding-left: 10px;
 	padding-right: 5px;
 	padding-top: 10px;
+	font-size: 12px;
 }
 
 .movie-list-entry .movie-genre {
 	padding-left: 10px;
 	padding-right: 5px;
 	padding-top: 10px;
+	font-size: 12px;
 }
 
 .movie-list-entry .watch-toggle {

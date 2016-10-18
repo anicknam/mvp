@@ -8,7 +8,9 @@ var MovieListEntry = (props) => (
       {(props.currShownMovieKey === props.movie["_id"]) ? 'Hide Info' : 'Show Info'}
       </button>
 
-      {/*{props.movie.watched ? <button className="watch-toggle">Add Review</button> : null}*/}
+      {props.movie.watched ? 
+      	<button className="add-review">Add Review</button> : null}
+
       {props.movie.watched ? 
       	<button className="watch-toggle" onClick={(e) => (props.toggleWatchedHandler(props.movie["_id"],props.movie.watched))}>Move to UnWatched</button> : null}
 
