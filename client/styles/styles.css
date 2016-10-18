@@ -1,3 +1,7 @@
+body {
+	background-image: url('../assets/movie-neg-opac.png');
+}
+
 .watch-button {
 	display:inline-block;
 }
@@ -12,17 +16,29 @@
   margin-bottom: 10px;
 }
 
-
 .movie-list-entry {
-	background-color: 'gray';
+	margin-top: 5px;
+	border-color: 'black';
+	background-color: #ffffff;
 	border-radius: 12px;
 	border: solid;
-	border-color: 'black';
 	height: 70px;
-	width: 300px;
+	width: 350px;
 }
 
 .movie-list-entry .movie-title {
+	padding-left: 10px;
+	padding-right: 5px;
+	padding-top: 10px;
+}
+
+.movie-list-entry .movie-year {
+	padding-left: 10px;
+	padding-right: 5px;
+	padding-top: 10px;
+}
+
+.movie-list-entry .movie-genre {
 	padding-left: 10px;
 	padding-right: 5px;
 	padding-top: 10px;

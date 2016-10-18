@@ -73,7 +73,7 @@ class App extends React.Component {
   	         data: JSON.stringify(newMovieEntry),
   	         dataType: "json",
   	         contentType: "application/json; charset=utf-8",
-  	         success: (data) => {
+  	         success: () => {
   	         	this.getAllMovies();
   	         	}
   	         ,
@@ -115,6 +115,30 @@ class App extends React.Component {
     })
   }
 
+  // -----------------------------------------------------------------------------
+  // TOGGLE 'WATCHED/UNWATCHED' HANDLER
+  // -----------------------------------------------------------------------------
+  toggleWatchedHandler (movieId) {
+
+  	var query = {};
+  	query["_id"] = movieId;
+
+  	  	$.ajax({
+  	         type: "POST",
+  	         url: this.serverURL,
+  	         data: JSON.stringify(query),
+  	         dataType: "json",
+  	         contentType: "application/json; charset=utf-8",
+  	         success: () => {
+  	         	this.getAllMovies();
+  	         	}
+  	         ,
+  	         error: (error) => {
+  	         	throw error;
+  	         }
+  	});
+
+  }
 
 
   render () {
@@ -143,7 +167,10 @@ class App extends React.Component {
         </div>
 
         <div> 
-          <MovieList movies={this.state.moviesToRender} showMovieInfoToggle={this.showMovieInfoToggle.bind(this)} currShownMovieKey={this.state.currShownMovieKey}/>
+          <MovieList movies={this.state.moviesToRender} 
+          showMovieInfoToggle={this.showMovieInfoToggle.bind(this)} 
+          currShownMovieKey={this.state.currShownMovieKey}
+          toggleWatchedHandler={this.toggleWatchedHandler.bind(this)}/>
         </div>
   	  </div>
   	)
