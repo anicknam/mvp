@@ -13,5 +13,4 @@ MovieList.propTypes = {
   movies: React.PropTypes.array.isRequired
 };
 
-//window.MovieList = MovieList;
 export default MovieList;

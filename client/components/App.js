@@ -35,6 +35,18 @@ class App extends React.Component {
   // GET FILTERED MOVIES
   // -----------------------------------------------------------------------------
   getFilteredMovies (watched) {
+  	
+  	$.ajax({
+  	         type: "GET",
+  	         url: this.serverURL + '?watched=' + watched.toString(),
+  	         success: (data) => {
+  	         	this.getAllMovies();
+  	         	}
+  	         ,
+  	         error: (error) => {
+  	         	throw error;
+  	         }
+  	});
     
   }
 
@@ -109,7 +121,7 @@ class App extends React.Component {
         </div>
 
         <div>
-          <button onClick={(e) => (this.getFilteredMovies.bind(this, true))}>UnWatched</button>
+          <button onClick={(e) => (this.getFilteredMovies(true))}>UnWatched</button>
         </div>
 
         <div> 

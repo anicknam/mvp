@@ -2,7 +2,8 @@ var db = require('./db/config');
 var Movie = require('./db/models/Movie');
 
 exports.fetchMovies = function(req, res) {
-
+  
+  console.log(req.query);
 	Movie.find(function(err, movies){
       if (err) {
       	res.status(500).send(err)
