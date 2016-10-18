@@ -10,10 +10,10 @@ var MovieListEntry = (props) => (
 
       {/*{props.movie.watched ? <button className="watch-toggle">Add Review</button> : null}*/}
       {props.movie.watched ? 
-      	<button className="watch-toggle" onClick={(e) => (props.toggleWatchedHandler(props.movie["_id"]))}>Move to UnWatched</button> : null}
+      	<button className="watch-toggle" onClick={(e) => (props.toggleWatchedHandler(props.movie["_id"],props.movie.watched))}>Move to UnWatched</button> : null}
 
       {!props.movie.watched ? 
-      	<button className="watch-toggle" onClick={(e) => (props.toggleWatchedHandler(props.movie["_id"]))}>Move To Watched</button> : null}
+      	<button className="watch-toggle" onClick={(e) => (props.toggleWatchedHandler(props.movie["_id"],props.movie.watched))}>Move To Watched</button> : null}
       
       {(props.currShownMovieKey === props.movie["_id"]) ? 
         <div>

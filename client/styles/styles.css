@@ -43,3 +43,9 @@ body {
 	padding-right: 5px;
 	padding-top: 10px;
 }
+
+.movie-list-entry .watch-toggle {
+	float: right;
+	margin-right: 5px;
+	margin-top: 5px;
+}

@@ -27,7 +27,7 @@ class App extends React.Component {
     $.get(this.serverURL).done((movies) => {
       this.setState({
       	moviesToRender: movies
-      })
+      });
     }).fail((err) => {
     	throw err;
     })
@@ -118,7 +118,7 @@ class App extends React.Component {
   // -----------------------------------------------------------------------------
   // TOGGLE 'WATCHED/UNWATCHED' HANDLER
   // -----------------------------------------------------------------------------
-  toggleWatchedHandler (movieId) {
+  toggleWatchedHandler (movieId,watched) {
 
   	var query = {};
   	query["_id"] = movieId;
@@ -130,7 +130,7 @@ class App extends React.Component {
   	         dataType: "json",
   	         contentType: "application/json; charset=utf-8",
   	         success: () => {
-  	         	this.getAllMovies();
+  	         	this.getFilteredMovies(watched);
   	         	}
   	         ,
   	         error: (error) => {
@@ -140,7 +140,9 @@ class App extends React.Component {
 
   }
 
-
+  // -----------------------------------------------------------------------------
+  // RENDERING
+  // -----------------------------------------------------------------------------
   render () {
   	return (
   	  <div>
