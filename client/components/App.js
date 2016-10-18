@@ -52,11 +52,6 @@ class App extends React.Component {
   	         }
   	});
 
-    // var currMoviesToRender = this.state.moviesToRender;
-    // currMoviesToRender.splice(0,0,newMovieEntry);
-    // this.setState({
-    // 	moviesToRender: currMoviesToRender
-    // })
   }
 
   render () {
