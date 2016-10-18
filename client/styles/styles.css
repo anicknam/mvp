@@ -1,3 +1,23 @@
 .watch-button {
 	display:inline-block;
 }
+
+.search-bar {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.nav-buttons {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+.movie-list-entry {
+	background-color: 'gray';
+	border-radius: 12px;
+	border: solid;
+	border-color: 'black';
+	height: 50px;
+	width: 200px;
+}

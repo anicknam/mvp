@@ -118,16 +118,15 @@ class App extends React.Component {
   	      </form>
   	    </div>
 
-        <div>
+        <div className="search-bar">
           <SearchMovie searchHandler={this.searchHandler.bind(this)}/>
         </div>
 
-        <div>
+        <div className = "nav-buttons">
+            <button className="watch-button" onClick={(e) => (this.getAllMovies())}>All Movies</button>
             <button className="watch-button" onClick={(e) => (this.getFilteredMovies(true))}>UnWatched</button>
             <button className="watch-button" onClick={(e) => (this.getFilteredMovies(false))}>Watched</button>
         </div>
-
- 
 
         <div> 
           <MovieList movies={this.state.moviesToRender}/>
