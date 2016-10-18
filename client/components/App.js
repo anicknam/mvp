@@ -1,7 +1,7 @@
 class App extends React.Component {
   constructor (props) {
     super(props);
-    this.serverURL = 'http://127.0.0.1:8080/movies';
+    this.serverURL = 'http://127.0.0.1:8000/movies';
 
     this.state = {
     	moviesToRender: window.movieData
@@ -51,6 +51,11 @@ class App extends React.Component {
   	         	throw error;
   	         }
   	});
+
+  }
+
+
+  searchHandler (title) {
 
   }
 
