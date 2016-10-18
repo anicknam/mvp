@@ -13,6 +13,9 @@ class App extends React.Component {
     }
   }
   
+  // -----------------------------------------------------------------------------
+  // GET ALL MOVIES
+  // -----------------------------------------------------------------------------
   componentDidMount () {
     this.getAllMovies();
   }
@@ -28,6 +31,17 @@ class App extends React.Component {
     })
   }
 
+  // -----------------------------------------------------------------------------
+  // GET FILTERED MOVIES
+  // -----------------------------------------------------------------------------
+  getFilteredMovies (watched) {
+    
+  }
+
+
+  // -----------------------------------------------------------------------------
+  // ADD MOVIE SUBMIT HANDLER
+  // -----------------------------------------------------------------------------
   submitHandler (e) {
   	e.preventDefault();
 
@@ -55,9 +69,11 @@ class App extends React.Component {
   }
 
 
+  // -----------------------------------------------------------------------------
+  // SEARCH MOVIE HANDLER
+  // -----------------------------------------------------------------------------
   searchHandler (title) {
 
-    // var searchedMovieTitle = refs.search.value;
     if (title){
       var currMoviesToRender = this.state.moviesToRender;
       currMoviesToRender.forEach((movie)=> {
@@ -90,6 +106,10 @@ class App extends React.Component {
 
         <div>
           <SearchMovie searchHandler={this.searchHandler.bind(this)}/>
+        </div>
+
+        <div>
+          <button onClick={(e) => (this.getFilteredMovies.bind(this, true))}>UnWatched</button>
         </div>
 
         <div> 
