@@ -4,7 +4,7 @@ import MovieListEntry from 'MovieListEntry';
 var MovieList = (props) => (
   <div className = "movie-list">
 	  {props.movies.map((movie) => {
-	    return <MovieListEntry key={movie["_id"]} movie={movie}/>
+	    return <MovieListEntry key={movie["_id"]} movie={movie} showMovieInfoToggle={props.showMovieInfoToggle} currShownMovieKey={props.currShownMovieKey}/>
 	  	})}
   </div>
 );

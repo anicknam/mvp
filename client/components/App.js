@@ -9,7 +9,9 @@ class App extends React.Component {
     this.serverURL = 'http://127.0.0.1:8000/api/movies';
 
     this.state = {
-    	moviesToRender: []
+    	moviesToRender: [],
+    	showMovieInfo: false,
+    	currShownMovieKey: 1
     }
   }
   
@@ -103,6 +105,18 @@ class App extends React.Component {
 
   }
 
+  // -----------------------------------------------------------------------------
+  // SHOW MOVIE INFO HANDLER
+  // -----------------------------------------------------------------------------
+  showMovieInfoToggle (key) {
+    var newKey = (key === this.state.currShownMovieKey) ? 1 : key;
+    this.setState({
+    	currShownMovieKey: newKey
+    })
+  }
+
+
+
   render () {
   	return (
   	  <div>
@@ -124,12 +138,12 @@ class App extends React.Component {
 
         <div className = "nav-buttons">
             <button className="watch-button" onClick={(e) => (this.getAllMovies())}>All Movies</button>
-            <button className="watch-button" onClick={(e) => (this.getFilteredMovies(true))}>UnWatched</button>
-            <button className="watch-button" onClick={(e) => (this.getFilteredMovies(false))}>Watched</button>
+            <button className="watch-button" onClick={(e) => (this.getFilteredMovies(false))}>UnWatched</button>
+            <button className="watch-button" onClick={(e) => (this.getFilteredMovies(true))}>Watched</button>
         </div>
 
         <div> 
-          <MovieList movies={this.state.moviesToRender}/>
+          <MovieList movies={this.state.moviesToRender} showMovieInfoToggle={this.showMovieInfoToggle.bind(this)} currShownMovieKey={this.state.currShownMovieKey}/>
         </div>
   	  </div>
   	)
