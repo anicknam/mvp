@@ -10,19 +10,18 @@ class App extends React.Component {
 
     this.state = {
     	moviesToRender: [],
-    	showMovieInfo: false,
-    	currShownMovieKey: 1
+    	currMovieInfoKey: 1,
+    	currMovieReviewKey: 1
     }
   }
   
-  // -----------------------------------------------------------------------------
-  // GET ALL MOVIES
-  // -----------------------------------------------------------------------------
   componentDidMount () {
     this.getAllMovies();
   }
 
-
+  // -----------------------------------------------------------------------------
+  // GET ALL MOVIES
+  // -----------------------------------------------------------------------------
   getAllMovies () {
     $.get(this.serverURL).done((movies) => {
       this.setState({
@@ -37,7 +36,6 @@ class App extends React.Component {
   // GET FILTERED MOVIES
   // -----------------------------------------------------------------------------
   getFilteredMovies (watched) {
-  	
   	$.ajax({
   	         type: "GET",
   	         url: this.serverURL + '?watched=' + watched.toString(),
@@ -51,7 +49,6 @@ class App extends React.Component {
   	         	throw error;
   	         }
   	});
-    
   }
 
 
@@ -81,7 +78,6 @@ class App extends React.Component {
   	         	throw error;
   	         }
   	});
-
   }
 
 
@@ -89,7 +85,6 @@ class App extends React.Component {
   // SEARCH MOVIE HANDLER
   // -----------------------------------------------------------------------------
   searchHandler (title) {
-
     if (title){
       var currMoviesToRender = this.state.moviesToRender;
       currMoviesToRender.forEach((movie)=> {
@@ -102,16 +97,25 @@ class App extends React.Component {
     } else {
       this.getAllMovies();
     }
-
   }
 
   // -----------------------------------------------------------------------------
-  // SHOW MOVIE INFO HANDLER
+  // CURRENT MOVIE DISPLAY INFO KEY UPDATE
   // -----------------------------------------------------------------------------
-  showMovieInfoToggle (key) {
-    var newKey = (key === this.state.currShownMovieKey) ? 1 : key;
+  currMovieInfoToggle (key) {
+    var newKey = (key === this.state.currMovieInfoKey) ? 1 : key;
     this.setState({
-    	currShownMovieKey: newKey
+    	currMovieInfoKey: newKey
+    })
+  }
+
+  // -----------------------------------------------------------------------------
+  // CURRENT MOVIE DISPLAY REVIEW KEY UPDATE
+  // -----------------------------------------------------------------------------
+  currMovieReviewToggle (key) {
+    var newKey = (key === this.state.currMovieReviewKey) ? 1 : key;
+    this.setState({
+    	currMovieReviewKey: newKey
     })
   }
 
@@ -119,7 +123,6 @@ class App extends React.Component {
   // TOGGLE 'WATCHED/UNWATCHED' HANDLER
   // -----------------------------------------------------------------------------
   toggleWatchedHandler (movieId,watched) {
-
   	var query = {};
   	query["_id"] = movieId;
 
@@ -137,8 +140,33 @@ class App extends React.Component {
   	         	throw error;
   	         }
   	});
-
   }
+
+  // -----------------------------------------------------------------------------
+  // SUBMIT REVIEW HANDLER
+  // -----------------------------------------------------------------------------
+  submitReviewHandler (e, movieId, watched) {
+  	e.preventDefault();
+  	console.log(this.refs.reviewText.value)
+  	var query = {};
+  	query["_id"] = movieId;
+  	query.review = review;
+  	  	$.ajax({
+  	         type: "POST",
+  	         url: this.serverURL,
+  	         data: JSON.stringify(query),
+  	         dataType: "json",
+  	         contentType: "application/json; charset=utf-8",
+  	         success: () => {
+  	         	this.getFilteredMovies(watched);
+  	         	}
+  	         ,
+  	         error: (error) => {
+  	         	throw error;
+  	         }
+  	});  
+  }
+
 
   // -----------------------------------------------------------------------------
   // RENDERING
@@ -170,9 +198,12 @@ class App extends React.Component {
 
         <div> 
           <MovieList movies={this.state.moviesToRender} 
-          showMovieInfoToggle={this.showMovieInfoToggle.bind(this)} 
-          currShownMovieKey={this.state.currShownMovieKey}
-          toggleWatchedHandler={this.toggleWatchedHandler.bind(this)}/>
+          currMovieInfoToggle={this.currMovieInfoToggle.bind(this)} 
+          currMovieReviewToggle={this.currMovieReviewToggle.bind(this)} 
+          currMovieInfoKey={this.state.currMovieInfoKey}
+          currMovieReviewKey={this.state.currMovieReviewKey}
+          toggleWatchedHandler={this.toggleWatchedHandler.bind(this)}
+          submitReviewHandler={this.submitReviewHandler.bind(this)}/>
         </div>
   	  </div>
   	)

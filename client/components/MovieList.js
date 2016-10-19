@@ -6,9 +6,12 @@ var MovieList = (props) => (
 	  {props.movies.map((movie) => {
 	    return <MovieListEntry key={movie["_id"]} 
 	                           movie={movie} 
-	                           showMovieInfoToggle={props.showMovieInfoToggle} 
-	                           currShownMovieKey={props.currShownMovieKey} 
-	                           toggleWatchedHandler={props.toggleWatchedHandler}/>
+	                           currMovieInfoToggle={props.currMovieInfoToggle}
+	                           currMovieReviewToggle={props.currMovieReviewToggle} 
+	                           currMovieInfoKey={props.currMovieInfoKey}
+	                           currMovieReviewKey={props.currMovieReviewKey}  
+	                           toggleWatchedHandler={props.toggleWatchedHandler}
+	                           submitReviewHandler={props.submitReviewHandler}/>
 	  	})}
   </div>
 );
